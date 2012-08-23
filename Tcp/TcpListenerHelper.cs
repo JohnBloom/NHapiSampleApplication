@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using NHapiSampleApplication.Models;
+using NHapiSampleApplication.nHapi;
 
 namespace NHapiSampleApplication.Tcp
 {
@@ -69,7 +71,6 @@ namespace NHapiSampleApplication.Tcp
 
                     int i;
                     var buffer = new TcpBuffer();
-                    
                     // Loop to receive all the data sent by the client.
                     while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
@@ -79,7 +80,9 @@ namespace NHapiSampleApplication.Tcp
                         {
                             OnNotify(message, NotifyType.Received);
 
-                            string returnMessage = "Received Ack";
+                            IAcknowlege ack = new HL7Acknowlege(); //Use an interface so we can easily abstract the hl7 out of the tcp code
+
+                            string returnMessage = ack.GetAcknowlegement(message);
                             byte[] msg = System.Text.Encoding.ASCII.GetBytes(returnMessage);
                             
                             // Send back a response.
