@@ -7,6 +7,8 @@
       d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
-        <TextBlock Height="217" HorizontalAlignment="Left" Name="Title" Text="TextBlock" VerticalAlignment="Top" Width="300" />
+        <TextBlock Height="27" HorizontalAlignment="Left" Name="fName" Text="{Binding Patient.FirstName}" VerticalAlignment="Top" Width="300" />
+        <TextBlock Height="26" HorizontalAlignment="Left" Name="mName" Text="{Binding Patient.MiddleName}" VerticalAlignment="Top" Width="300" Margin="0,33,0,0" />
+        <TextBlock Height="82" HorizontalAlignment="Left" Name="lName" Text="{Binding Patient.LastName}" VerticalAlignment="Top" Width="300" Margin="0,65,0,0" />
     </Grid>
 </UserControl>

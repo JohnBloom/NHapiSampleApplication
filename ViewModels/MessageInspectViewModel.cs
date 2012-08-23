@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Caliburn.Micro;
 using NHapiSampleApplication.nHapi;
+using NHapiSampleApplication.Models;
 
 namespace NHapiSampleApplication.ViewModels
 {
@@ -24,6 +25,22 @@ namespace NHapiSampleApplication.ViewModels
             }
         }
 
+        private Patient _Patient;
+        public Patient Patient
+        {
+            get { return _Patient; }
+            set
+            {
+                if (Equals(value, _Patient))
+                {
+                    return;
+                }
+
+                _Patient = value;
+                NotifyOfPropertyChange(() => Patient);
+            }
+        }
+
         public MessageInspectViewModel()
         {
             Title = "Nothing Selected";
@@ -33,11 +50,11 @@ namespace NHapiSampleApplication.ViewModels
         {
             var parser = new A01Parser();
             
-            parser.Parse(message);
+            var adtMessage = parser.Parse(message);
 
-            if (parser.Message != null)
+            if (adtMessage != null)
             {
-                Title = parser.Message.PID.GetPatientName().First().GivenName.ToString();
+                Patient = parser.Convert(adtMessage);    
             }
         }
     }

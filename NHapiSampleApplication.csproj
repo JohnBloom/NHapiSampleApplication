@@ -80,6 +80,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Patient.cs" />
     <Compile Include="nHapi\A01Parser.cs" />
     <Compile Include="Tcp\NotifyEventArgs.cs" />
     <Compile Include="Tcp\NotifyType.cs" />
