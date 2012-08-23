@@ -5,12 +5,15 @@ using System.Text;
 using Caliburn.Micro;
 using System.Windows;
 using NHapiSampleApplication.Tcp;
+using NHapiSampleApplication.ViewModels;
 
-namespace NHapiSampleApplication
+namespace NHapiSampleApplication.ViewModels
 {
-    public class MainViewModel : Screen
+    public class MainViewModel : Conductor<Screen>.Collection.OneActive
     {
         private TcpListenerHelper _Listener;
+
+        public MessageInspectViewModel MessageInspect { get; set; }
 
         private BindableCollection<string> _ReceivedMessages;
         public BindableCollection<string> ReceivedMessages
@@ -57,6 +60,23 @@ namespace NHapiSampleApplication
             }
         }
 
+        private string _SelectedReceivedMessage;
+        public string SelectedReceivedMessage
+        {
+            get { return _SelectedReceivedMessage; }
+            set
+            {
+                if (value == _SelectedReceivedMessage)
+                {
+                    return;
+                }
+
+                MessageInspect.Init(value);
+                _SelectedReceivedMessage = value;
+                NotifyOfPropertyChange(() => SelectedReceivedMessage);
+            }
+        }
+
         private string _IPAddress;
         public string IPAddress
         {
@@ -84,6 +104,7 @@ namespace NHapiSampleApplication
             ReceivedMessages = new BindableCollection<string>();
             SentMessages = new BindableCollection<string>();
             Messages = new BindableCollection<string>();
+            MessageInspect = new MessageInspectViewModel();
 
             _Listener = new TcpListenerHelper();
             _Listener.Notify += new EventHandler<NotifyEventArgs>(Listener_Notify);

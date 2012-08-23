@@ -1,9 +1,9 @@
-﻿<Window x:Class="NHapiSampleApplication.MainView"
+﻿<Window x:Class="NHapiSampleApplication.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="550" Width="650">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Title="MainWindow" Height="550" Width="1219">
     <Grid>
-        <Grid Height="500" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Height="500" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="30"/>
@@ -41,7 +41,7 @@
             
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4">
                 <Label Content="Received:" Height="28" HorizontalAlignment="Left" Name="label1"/>
-                <ListBox Background="GhostWhite" ItemsSource="{Binding ReceivedMessages}" Height="100" />
+                <ListBox Background="GhostWhite" SelectedItem="{Binding SelectedReceivedMessage, Mode=TwoWay}" ItemsSource="{Binding ReceivedMessages}" Height="100" />
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="6">
@@ -51,5 +51,6 @@
             
             
         </Grid>
+        <ContentControl Height="511" HorizontalAlignment="Left" Margin="606,0,0,0" Name="MessageInspect" VerticalAlignment="Top" Width="591" />
     </Grid>
 </Window>

@@ -17,7 +17,7 @@ namespace NHapiSampleApplication.Views
     /// <summary>
     /// Interaction logic for MessageInspectView.xaml
     /// </summary>
-    public partial class MessageInspectView : Page
+    public partial class MessageInspectView : UserControl
     {
         public MessageInspectView()
         {

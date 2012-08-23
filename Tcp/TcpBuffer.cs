@@ -23,7 +23,7 @@ namespace NHapiSampleApplication.Tcp
                 var startIndex = Buffer.IndexOf(start);
                 if (startIndex < endIndex)
                 {
-                    result.Add(Buffer.Substring(startIndex, endIndex - startIndex));
+                    result.Add(Buffer.Substring(startIndex + 1, endIndex - startIndex));
                 }
 
                 Buffer = Buffer.Substring(endIndex, Buffer.Length - endIndex);

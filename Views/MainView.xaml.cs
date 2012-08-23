@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace NHapiSampleApplication
+namespace NHapiSampleApplication.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
