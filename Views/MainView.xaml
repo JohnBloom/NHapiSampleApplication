@@ -1,0 +1,55 @@
+﻿<Window x:Class="NHapiSampleApplication.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="550" Width="650">
+    <Grid>
+        <Grid Height="500" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="IP Address:" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
+                <TextBox Grid.Column="2" x:Name="IPAddress" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <Label Content="Port:" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
+                <TextBox Grid.Column="6" Name="Port" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <Button Content="Listen" Name="Listen" Grid.Column="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <Button Content="Stop" Name="Stop" Grid.Column="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Grid>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
+                <Label Content="Messages:" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" />
+                <ListBox Background="GhostWhite" Height="100" ItemsSource="{Binding Messages}"/>
+            </StackPanel>
+            
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4">
+                <Label Content="Received:" Height="28" HorizontalAlignment="Left" Name="label1"/>
+                <ListBox Background="GhostWhite" ItemsSource="{Binding ReceivedMessages}" Height="100" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="6">
+                <Label Content="Sent:" Height="28" HorizontalAlignment="Left" Name="label2" VerticalAlignment="Top" Width="57" />
+                <ListBox Background="GhostWhite" Height="100" ItemsSource="{Binding SentMessages}"/>
+            </StackPanel>
+            
+            
+        </Grid>
+    </Grid>
+</Window>
