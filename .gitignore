@@ -1,0 +1,11 @@
+/*.nsi
+/*.user
+/Build
+/Dist
+/Publish
+/build.txt
+/nant-*.log*
+/docgen
+bin/
+obj/
+/_ReSharper.NHapiSampleApplication
