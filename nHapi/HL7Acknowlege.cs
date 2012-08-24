@@ -40,14 +40,11 @@ namespace NHapiSampleApplication.nHapi
         }
         #endregion
 
-        public string GetAcknowlegement(string message)
+        public string GetAcknowlegement(IMessage message)
         {
+            var ackMessage = (ACK)MakeACK(message, "AA");
+
             var parser = new PipeParser();
-
-            var hl7Message = parser.Parse(message, "2.5");
-
-            var ackMessage = (ACK)MakeACK(hl7Message, "AA");
-
             return parser.Encode(ackMessage);
         }
 

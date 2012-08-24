@@ -80,11 +80,18 @@ namespace NHapiSampleApplication.Tcp
                         {
                             OnNotify(message, NotifyType.Received);
 
-                            IAcknowlege ack = new HL7Acknowlege(); //Use an interface so we can easily abstract the hl7 out of the tcp code
+                            //***************************
+                            //All of this needs to be decoupled from the tcp logic
+                            var parser = new A01Parser();
+                            var parsedMessage = parser.Parse(message);
 
-                            string returnMessage = ack.GetAcknowlegement(message);
-                            byte[] msg = System.Text.Encoding.ASCII.GetBytes(returnMessage);
+                            IAcknowlege ack = new HL7Acknowlege(); 
+
+                            string returnMessage = ack.GetAcknowlegement(parsedMessage);
+                            byte[] msg = System.Text.Encoding.ASCII.GetBytes((char)11 + returnMessage + (char)28);
                             
+                            //***************************
+
                             // Send back a response.
                             stream.Write(msg, 0, msg.Length);
                             OnNotify(String.Format("{0}", returnMessage), NotifyType.Sent);

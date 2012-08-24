@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NHapi.Base.Model;
 
 namespace NHapiSampleApplication.Models
 {
-    public interface IAcknowlege
+    public interface IParser<T>
     {
-        string GetAcknowlegement(IMessage message);
+        T Parse(string message);
+        Patient Convert(T message);
     }
 }
