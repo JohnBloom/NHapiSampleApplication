@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using Caliburn.Micro;
 using System.Windows;
+using NHapiSampleApplication.Models;
 using NHapiSampleApplication.Tcp;
 using NHapiSampleApplication.ViewModels;
 
@@ -84,6 +86,7 @@ namespace NHapiSampleApplication.ViewModels
             set
             {
                 _IPAddress = value;
+                ConfigurationManager.AppSettings["IPAddress"] = _IPAddress;
                 NotifyOfPropertyChange(()=> IPAddress);
             }
         }
@@ -95,6 +98,12 @@ namespace NHapiSampleApplication.ViewModels
             set
             {
                 _Port = value;
+                
+                if (_Port != null)
+                {
+                    ConfigurationManager.AppSettings["Port"] = _Port.Value.ToString();    
+                }
+                
                 NotifyOfPropertyChange(() => Port);
             }
         }
@@ -105,6 +114,9 @@ namespace NHapiSampleApplication.ViewModels
             SentMessages = new BindableCollection<string>();
             Messages = new BindableCollection<string>();
             MessageInspect = new MessageInspectViewModel();
+
+            IPAddress = ConfigurationManager.AppSettings["IPAddress"];
+            Port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
 
             _Listener = new TcpListenerHelper();
             _Listener.Notify += new EventHandler<NotifyEventArgs>(Listener_Notify);

@@ -9,23 +9,23 @@ using NHapi.Base.Model;
 using NHapi.Base.Parser;
 using NHapi.Model.V25.Message;
 using NHapiSampleApplication.Models;
+using NHapi.Model.V23.Message;
 
 namespace NHapiSampleApplication.nHapi
 {
-    public class A01Parser
+    public class A01Parser : IParser<ADT_A08>
     {
-        public ADT_A01 Parse(string message)
+        public ADT_A08 Parse(string message)
         {
             IMessage hl7Message = null;
-            ADT_A01 adtMessage = null;
+            ADT_A08 adtMessage = null;
             try
             {
                 var parser = new PipeParser();
 
-                message = message.Replace("\\r\\n", "\r\n");
-                hl7Message = parser.Parse(message, "2.5");
+                hl7Message = parser.Parse(message, "2.3");
 
-                adtMessage = (ADT_A01)hl7Message;
+                adtMessage = (ADT_A08)hl7Message;
             }
             catch (HL7Exception ex)
             {
@@ -36,12 +36,12 @@ namespace NHapiSampleApplication.nHapi
             return adtMessage;
         }
 
-        public Patient Convert(ADT_A01 message)
+        public Patient Convert(ADT_A08 message)
         {
             var patient = new Patient();
-            patient.FirstName = message.PID.GetPatientName().First().GivenName.Value;
-            patient.MiddleName = message.PID.GetPatientName().First().SecondAndFurtherGivenNamesOrInitialsThereof.Value;
-            patient.LastName = message.PID.GetPatientName().First().FamilyName.Surname.Value;
+            patient.FirstName = message.PID.PatientName.GivenName.Value;
+            patient.MiddleName = message.PID.PatientName.MiddleInitialOrName.Value;
+            patient.LastName = message.PID.PatientName.FamilyName.Value;
 
             return patient;
         }

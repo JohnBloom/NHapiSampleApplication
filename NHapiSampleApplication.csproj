@@ -61,6 +61,7 @@
       <HintPath>libs\NHapi.Model.V25.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,11 +83,13 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\IAcknowlege.cs" />
+    <Compile Include="Models\IParser.cs" />
+    <Compile Include="Models\MessageReceivedEventArgs.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="nHapi\A01Parser.cs" />
     <Compile Include="nHapi\HL7Acknowlege.cs" />
-    <Compile Include="Tcp\NotifyEventArgs.cs" />
-    <Compile Include="Tcp\NotifyType.cs" />
+    <Compile Include="Models\NotifyEventArgs.cs" />
+    <Compile Include="Models\NotifyType.cs" />
     <Compile Include="Tcp\TcpBuffer.cs" />
     <Compile Include="Tcp\TcpListenerHelper.cs" />
     <Compile Include="Views\MessageInspectView.xaml.cs">
@@ -129,6 +132,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
